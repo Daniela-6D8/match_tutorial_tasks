@@ -2,8 +2,8 @@
 	<include file="$(find match_gazebo)/launch/match_world_common.launch">
 		 <arg name="world_name" default="big_square"/>
 	</include>
-
-	 <arg name="robot1_name"  default="mir1"/>
+	
+  <arg name="robot1_name"  default="mir1"/>
   <arg name="robot2_name"  default="mir2"/>
   <arg name="robot3_name"  default="mir3"/>
 
