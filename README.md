@@ -1,4 +1,8 @@
-# Tutorial files for working with the mir hardware
+# Tutorial files for working with the Match_Mobile_Robotics repository
+
+
+
+
 The following procedure has to be done for each tutorial independently:
 >1. Start the world/environment:
 >   * Simulation a): `roslaunch match_gazebo world_{world_name}.launch`
