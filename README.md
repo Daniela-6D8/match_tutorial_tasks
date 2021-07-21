@@ -1,5 +1,5 @@
-# Task 1
+# Tutorial tasks to learn about the Match_Mobile_Robotics Repository 
 
-Create a launch file that spawns a single MiR100 robot platform in the "empty_world" map. 
+
 
 
