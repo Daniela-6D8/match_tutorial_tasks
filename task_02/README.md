@@ -1,4 +1,4 @@
 # Task 2
 
-Create and load an rviz config for the robot from the previous task
+Create a launch file that spawns a single MiR200 robot platform in the "big_square" map. 
 
