@@ -9,4 +9,4 @@ mir2: (0/-0.5/0)
 
 mir3: (2/0.0/0)
 
-
+Keep the old rviz config.
