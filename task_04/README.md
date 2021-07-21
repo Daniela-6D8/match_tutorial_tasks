@@ -5,7 +5,7 @@ Spawn the robots in the following positions:
 
 mir1: (0/0.5/0)
 
-mir2: (-0/0.5/0)
+mir2: (0/-0.5/0)
 
 mir3: (2/0.0/0)
 
