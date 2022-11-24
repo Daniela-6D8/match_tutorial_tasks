@@ -1,5 +1,13 @@
-# Task 1
+# Task 01
 
-Create a launch file that spawns a single MiR100 robot platform in the "empty_world" map. 
+Task: Create a launch file that spawns a single MiR100 robot platform in the `empty_world` map.
 
-Note: The map_server will not be able to find a map for the empty world (there is no map in an empty world)
+### Preparation
+
+1. Clone the [match_mobile_robotics](http://https://github.com/match-ROS/match_mobile_robotics "match_mobile_robotics") repository into your catkin workspace.
+2. Create a `Task01.launch` file in your catkin workspace.
+
+### Hints
+
+- Use the [Gazebo documentation](https://classic.gazebosim.org/tutorials?tut=ros_roslaunch&cat=connect_ros#LaunchingOtherDemoWorlds "Gazebo documentation") to write your .launch file
+- Test your file with the `roslaunch file.launch` command
