@@ -51,7 +51,7 @@ void run()
 // This function is called when Subscriber s (line 70) read a message
 void callback(const nav_msgs::Odometry msg)
 {
-    // Write the current position of the robot from the message to p_current
+    // Write the current pose of the robot from the message to p_current
     p_current = msg.pose.pose;
     run();
 }
