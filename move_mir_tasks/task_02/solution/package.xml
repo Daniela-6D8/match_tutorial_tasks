@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>move_mir_tasks</name>
+  <name>solution_node2</name>
   <version>0.0.0</version>
-  <description>The move_mir_tasks package</description>
+  <description>The solution_node2 package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
