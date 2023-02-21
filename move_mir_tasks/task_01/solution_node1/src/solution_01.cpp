@@ -22,6 +22,7 @@ Publisher p;
 void run()
 {
     ROS_INFO("running");
+    
 
     // If the current Position was received for the first time
     // the end position is set
@@ -46,6 +47,7 @@ void run()
 
     // Publish twist message to the cmd_vel topic of the robot
     p.publish(twist);
+    ROS_INFO("published!");
 }
 
 // This function is called when Subscriber s (line 70) read a message
@@ -53,6 +55,7 @@ void callback(const nav_msgs::Odometry msg)
 {
     // Write the current pose of the robot from the message to p_current
     p_current = msg.pose.pose;
+
     run();
 }
 
@@ -61,6 +64,7 @@ int main(int argc, char **argv)
     // See WritingPublisherSubscriber Tutorial on ros.org for explanations of the following lines
     ROS_INFO("started");
     init(argc, argv, "solution_node");
+
     NodeHandle n;
     Rate loop_rate(5);
 
