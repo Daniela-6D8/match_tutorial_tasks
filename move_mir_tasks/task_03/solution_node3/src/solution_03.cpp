@@ -8,14 +8,19 @@
 
 using namespace ros;
 
+// Position of odometery, AMCL and Ground Truth
 geometry_msgs::Pose p_current;
-geometry_msgs::Pose p_end;
-geometry_msgs::Twist twist;
 geometry_msgs::Pose poseAMCLx, GTx;
 
-// Orientation saved as Quaternion
-geometry_msgs::Quaternion poseAMCLo, GTo;
+// Orientaion of odometery, AMCL and Ground Truth
 geometry_msgs::Quaternion q_current;
+geometry_msgs::Quaternion poseAMCLo, GTo;
+
+// variable for publishing twist
+geometry_msgs::Twist twist;
+
+// pose and orientation of the end goal
+geometry_msgs::Pose p_end;
 tf2::Quaternion q_end;
 
 // yaw_end will be the end orientation of the rotation
@@ -29,12 +34,33 @@ tf2::Quaternion q_tf;
 
 int state = 0;
 
+/**
+States:
+0: Start up, set the first end position
+1: Move to the first end position
+2: Turn 180 degrees
+3: Set the new end pose with position and orientation
+4: Move to end position
+5: Turn 180 degrees
+
+default: set the state = 0
+*/
+
 Publisher p;
 
 int round_num = 1;
 
-void moveOneStep(geometry_msgs::Pose pose){
+/*
+round_num % 3:
+1: Run using Odometry poses
+2: Run using AMCL poses
+0: Run using Ground Truth poses
+*/
 
+
+void move(geometry_msgs::Pose pose){
+
+    // move the robot towards the end goal
     if(abs(p_end.position.x - pose.position.x) > 0.1 ){
         twist.linear.x = 0.3;
     }
@@ -45,7 +71,7 @@ void moveOneStep(geometry_msgs::Pose pose){
 }
 
 void turn(geometry_msgs::Quaternion quat){
-
+    // turn the robot's yaw towards yaw end
     tf2::Quaternion tf2q_current(
     quat.x,
     quat.y,
@@ -83,7 +109,7 @@ void run(geometry_msgs::Pose pose, geometry_msgs::Quaternion quat)
         break;
     case 1:    
         {
-            moveOneStep(pose);  
+            move(pose);  
         }
         break;
     case 2:
@@ -107,7 +133,7 @@ void run(geometry_msgs::Pose pose, geometry_msgs::Quaternion quat)
         break;
     case 4:
         {
-            moveOneStep(pose);  
+            move(pose);  
         }
         break;
     case 5:
@@ -130,6 +156,7 @@ void run(geometry_msgs::Pose pose, geometry_msgs::Quaternion quat)
 
 void OdomCallback(const nav_msgs::Odometry msg)
 {
+    //Callback function for Odometry data
     p_current = msg.pose.pose;
     q_current = msg.pose.pose.orientation;
     if(round_num % 3 == 1){
@@ -142,6 +169,7 @@ void OdomCallback(const nav_msgs::Odometry msg)
 
 void poseAMCLCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msgAMCL)
 {
+    //Callback function for AMCL data
     poseAMCLx = msgAMCL->pose.pose;
     poseAMCLo = msgAMCL->pose.pose.orientation;   
     if(round_num % 3 == 2){
@@ -152,6 +180,7 @@ void poseAMCLCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& 
 
 void GTCallback(const nav_msgs::Odometry msgGT)
 {
+    //Callback function for Ground Truth data
     GTx = msgGT.pose.pose;
     GTo = msgGT.pose.pose.orientation;   
     if(round_num % 3 == 0){
@@ -167,14 +196,23 @@ int main(int argc, char **argv)
     NodeHandle n;
     Rate loop_rate(5);
 
-    p = n.advertise<geometry_msgs::Twist>("/mobile_base_controller/cmd_vel", 1000);
+    // Publshing Twist
+    p = n.advertise<geometry_msgs::Twist>("/mobile_base_controller/cmd_vel", 1000); 
     
-    Subscriber s = n.subscribe("/mobile_base_controller/odom", 1, OdomCallback);
+    // Subscribing to Odometry data
+    Subscriber s = n.subscribe("/mobile_base_controller/odom", 1, OdomCallback); 
    
+    // Subscribing to AMCL data
     Subscriber sub_amcl = n.subscribe("/amcl_pose", 1, poseAMCLCallback);
 
+    // Subscribing to Ground Truth data
     Subscriber sub_gt = n.subscribe("/ground_truth", 1, GTCallback);
 
+    /* 
+    all user callbacks will be called from within the ros::spin() call. 
+    ros::spin() will not return until the node has been shutdown, 
+    either through a call to ros::shutdown() or a Ctrl-C. 
+    */
     spin();
 
     return 0;
