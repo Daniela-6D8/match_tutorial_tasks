@@ -79,7 +79,7 @@ void turn(geometry_msgs::Quaternion quat){
     quat.w);
     tf2::Matrix3x3 matrix_current(tf2q_current);
     matrix_current.getRPY(junk, junk, yaw_current);
-    if (abs(yaw_end - yaw_current) > 0.05)
+    if (abs(yaw_end - yaw_current) > 0.005)
     {
         twist.angular.z = 0.5;
     }
