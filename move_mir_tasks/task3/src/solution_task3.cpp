@@ -57,6 +57,7 @@ round_num % 3:
 0: Run using Ground Truth poses
 */
 
+
 void move(geometry_msgs::Pose pose){
 
     // move the robot towards the end goal
@@ -88,6 +89,7 @@ void turn(geometry_msgs::Quaternion quat){
         state++;
     }
 }
+
 
 void run(geometry_msgs::Pose pose, geometry_msgs::Quaternion quat)
 {   
@@ -151,6 +153,7 @@ void run(geometry_msgs::Pose pose, geometry_msgs::Quaternion quat)
     p.publish(twist);
 }
 
+
 void OdomCallback(const nav_msgs::Odometry msg)
 {
     //Callback function for Odometry data
@@ -161,6 +164,8 @@ void OdomCallback(const nav_msgs::Odometry msg)
         run(p_current,q_current);
     }
 }
+
+
 
 void poseAMCLCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msgAMCL)
 {

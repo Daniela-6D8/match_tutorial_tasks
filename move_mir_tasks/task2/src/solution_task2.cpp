@@ -32,7 +32,6 @@ States:
 4: Move to end position
 5: Finish
 */
-
 int state = 0;
 
 Publisher p;

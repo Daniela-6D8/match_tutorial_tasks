@@ -21,7 +21,7 @@ Publisher p;
 // Tip: Start by reading the main() function first to better understand everything
 void run()
 {
-    ROS_INFO("running");
+    ROS_INFO_STREAM("running");
     
 
     // If the current Position was received for the first time
@@ -47,7 +47,7 @@ void run()
 
     // Publish twist message to the cmd_vel topic of the robot
     p.publish(twist);
-    ROS_INFO("published!");
+    ROS_INFO_STREAM("published!");
 }
 
 // This function is called when Subscriber s (line 70) read a message

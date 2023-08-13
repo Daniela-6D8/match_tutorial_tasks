@@ -9,6 +9,7 @@ project(task1)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  roscpp
   std_msgs
 )
 
@@ -118,6 +119,9 @@ include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
 )
+
+add_executable(task1 src/solution_task1.cpp)
+target_link_libraries(task1 ${catkin_LIBRARIES})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

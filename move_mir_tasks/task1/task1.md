@@ -6,7 +6,8 @@ Create a launch file that spawns a single MiR100 robot platform in the "empty_wo
 
 ### Hints
 
-- Create a publisher and subscriber in one node to receive/send the messages from/to the robot.  Use the WritingPublisherSubscriber ROS examples for [C++](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29 "WritingPublisherSubscriber(c++)") or [Python](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29 "WritingPublisherSubscriber(python)")
+- Create a publisher and subscriber in one node to receive/send the messages from/to the robot. 
+Use the WritingPublisherSubscriber ROS examples for [C++](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29 "WritingPublisherSubscriber(c++)") or [Python](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29 "WritingPublisherSubscriber(python)")
 - To find out which one to use, use the `rostopic list` command
 - Use `rostopic type "topic"` to see the data type of a topic
 - Set up your CMakeLists.txt correctly
