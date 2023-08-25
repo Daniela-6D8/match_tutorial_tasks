@@ -1,5 +1,7 @@
 # Task 01
 
+***Try to solve this task on your own and do not look at the solution until you have completed this task!***
+
 Task: Create a launch file that spawns a single MiR100 robot platform in the `empty_world` map.
 
 ### Preparation
