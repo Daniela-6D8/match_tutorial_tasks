@@ -1,5 +1,7 @@
 # Task 03
 
+***Try to solve this task on your own and do not look at the solution until you have completed this task!***
+
 Create and load an rviz config for the robot from the previous task
 
 ### Preparation
