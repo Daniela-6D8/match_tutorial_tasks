@@ -1,0 +1,46 @@
+
+<launch>
+
+	<include file="$(find match_gazebo)/launch/big_square.launch">
+		 <!-- <arg name="world_name" default="big_square"/> -->
+	</include>
+    
+  <!-- mir1 -->
+  
+  
+        <include file="$(find mir_launch_sim)/launch/mir_200.launch" ns= "mir1" pass_all_args="true">
+            <arg name="tf_prefix"    default="mir1" />
+            <arg name="robot_x"   default="0.0" />
+            <arg name="robot_y"   default="0.5" />
+            <arg name="robot_yaw" default="0.0" />  
+            <arg name="model_name" default="mir1"/>   
+        </include>
+
+   
+  <!-- mir2 -->
+
+
+        <include file="$(find mir_launch_sim)/launch/mir_200.launch" ns= "mir2" pass_all_args="true">
+            <arg name="tf_prefix"    default="mir2" />
+            <arg name="robot_x"   default="0.0" />
+            <arg name="robot_y"   default="-0.5" />
+            <arg name="robot_yaw" default="0.0" />  
+            <arg name="model_name" default="mir2"/>   
+        </include>
+
+ 
+  <!-- mir3 -->
+    
+        <include file="$(find mir_launch_sim)/launch/mir_200.launch" ns= "mir3" pass_all_args="true">
+            <arg name="tf_prefix"    default="mir3" />
+            <arg name="robot_x"   default="2.0" />
+            <arg name="robot_y"   default="0.0" />
+            <arg name="robot_yaw" default="0.0" />  
+            <arg name="model_name" default="mir3"/>   
+        </include>
+    
+
+	<node type="rviz" name="rviz" pkg="rviz" args="-d $(find launch_file_tasks)/task_03/task3.rviz" />
+
+  
+</launch>
