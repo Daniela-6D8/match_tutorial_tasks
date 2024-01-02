@@ -15,40 +15,25 @@ class Robot_move ():
         self.pub = rospy.Publisher('/mobile_base_controller/cmd_vel', Twist,queue_size=10 )
         self.speed = Twist()
         self.pose = Pose()
-        self.x = self.pose.position.x 
+        """ self.x = self.pose.position.x 
         self.y= self.pose.position.y
-        self.distance_moved= 0.0
+        self.distance_moved= 0.0 """
 
         self.rate =rospy.Rate(10)
         self.sub = rospy.Subscriber ('/mir_pose_simple', Pose , self.callback_fontion  )
         
-        self.x0=self.x
-        self.y0=self.y
+        #self.x0=self.x
+        #self.y0=self.y
 
     def pub_vel(self,distance): 
 
         self.speed.linear.x = 0.2
         self.pub.publish (self.speed)
         self.rate.sleep() 
-        distance_moved = abs ( math.sqrt(self.x-self.x0)**2+(self.y-self.y0)**2)
-        if distance <  distance_moved:
-            rospy.loginfo (distance_moved)
-            self.speed.linear.x = 0.0
-
-
-
-        """    
-        if  self.pose.position.x < 1.0 : 
-
-        self.speed.linear.x = 0.2
-        time.sleep(5)
-        self.speed.linear.x = 0.0
-       else :
-           self.speed.linear.x = 0.0
-       self.pub.publish (self.speed)
-       self.rate.sleep()  
-             """
-      
+        # distance_moved = abs ( math.sqrt(self.x-self.x0)**2+(self.y-self.y0)**2)
+        # if distance <  distance_moved:
+        #     rospy.loginfo (distance_moved)
+        #     self.speed.linear.x = 0
 
     def stop_robot(self):
         self.speed.linear.x = 0
