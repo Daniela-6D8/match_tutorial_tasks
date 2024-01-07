@@ -7,21 +7,6 @@ from tf.transformations import euler_from_quaternion, quaternion_from_euler
 import math
 
 
-##### test of Quaternion   #####
-
-# if __name__ == '__main__':
-    
-#       # RPY to convert: 90deg, 0, -90deg
-#       q = quaternion_from_euler(90, 0, -90)
-#       yaw_end = math.pi
-
-#       print (yaw_end)
-   
-#       print ("The quaternion representation is %s %s %s %s." % (q[0], q[1], q[2], q[3]))
-
-### END  ###
-
-
 state = 0
 current_pose = Pose()
 end_pose = Pose ()
@@ -102,12 +87,13 @@ def callback (msg) :
                                    
 
 def main():
-    global pub
-
+    global pub , pub_2  
     rospy.loginfo("started")
     rospy.init_node("solution_node2")
     rate = rospy.Rate(5)
     pub = rospy.Publisher("/mobile_base_controller/cmd_vel", Twist, queue_size=10)
+
+    pub_2 = rospy.Publisher("/ground_truth", Odometry, queue_size=10)
     s = rospy.Subscriber("/mobile_base_controller/odom", Odometry, callback)
 
     while not rospy.is_shutdown():
